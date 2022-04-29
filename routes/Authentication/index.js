@@ -1,6 +1,27 @@
 const express = require("express")
 const router = express.Router()
 
-router.all("*", (req, res) => res.status(501).send("👽 Not Yet Implemented!"))
+/** The Controller files */
+const Token = require("./token.controller")
+
+/**
+ * @swagger
+ *
+ * /login:
+ *   post:
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: username
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         in: formData
+ *         required: true
+ *         type: string
+ */
+
+router.post("/token", Token.post)
 
 module.exports = router

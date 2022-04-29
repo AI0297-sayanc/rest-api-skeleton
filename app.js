@@ -5,7 +5,17 @@ const logger = require("morgan")
 const cors = require("cors")
 const helmet = require("helmet")
 
-require("dotenv").config()
+const swaggerJSDoc = require("swagger-jsdoc")
+const swaggerUI = require("swagger-ui-express")
+
+require("dotenv").config() // set up process.env as early as possible!
+
+const swaggerDefinition = require("./swaggerRootDefinition")
+const swaggerOptions = {
+  swaggerDefinition,
+  apis: ["./routes/**/*.js"],
+}
+const swaggerSpec = swaggerJSDoc(swaggerOptions)
 
 const mainRouter = require("./routes")
 
@@ -22,6 +32,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 app.use("/", mainRouter)
 
 module.exports = app
