@@ -7,6 +7,7 @@
 const debug = require("debug")("skeleton:server")
 const http = require("http")
 const app = require("../app")
+const db = require("../db/mongo")
 
 /**
  * Normalize a port into a number, string, or false.
@@ -83,9 +84,13 @@ function onListening() {
 }
 
 /**
- * Listen on provided port, on all network interfaces.
+ * Listen on provided port, on all network interfaces; after connecting to MongoDB
  */
 
-server.listen(port)
+db.connect((dbConnErr) => {
+  if (dbConnErr !== null) console.log("==> ERR Connecting to MongoDB: ", dbConnErr)
+  server.listen(port)
+  console.log(`🚀 Server listening on port ${port}`);
+})
 server.on("error", onError)
 server.on("listening", onListening)
