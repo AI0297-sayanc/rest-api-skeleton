@@ -13,7 +13,7 @@ require("dotenv").config() // set up process.env as early as possible!
 const swaggerDefinition = require("./swaggerRootDefinition")
 const swaggerOptions = {
   swaggerDefinition,
-  apis: ["./routes/**/*.js"],
+  apis: ["./routes/**/*.js", "./routes/**/*.yaml", "./routes/**/*.yml"],
 }
 const swaggerSpec = swaggerJSDoc(swaggerOptions)
 

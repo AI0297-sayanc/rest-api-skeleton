@@ -62,4 +62,6 @@ typings/
 
 # editor/IDE
 .vscode/
+tempCodeRunnerFile.javascript
+TODO*
 
