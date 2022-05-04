@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon -e js,yaml,yml ./bin/www",
+    "start": "nodemon ./bin/www",
     "lint": "eslint './**/*.js'",
     "lint:quiet": "eslint --quiet './**/*.js'",
-    "lint:fix": "eslint './**/*.js' --fix"
+    "lint:fix": "eslint './**/*.js' --fix",
+    "test": "ava"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -24,11 +25,17 @@
     "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
+    "ava": "^4.2.0",
     "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "husky": "^7.0.4",
     "nodemon": "^2.0.15",
-    "pino-pretty": "^7.6.1"
+    "pino-pretty": "^7.6.1",
+    "supertest": "^6.2.3"
+  },
+  "nodemonConfig": {
+    "ignore": ["tests/*", "docs/*", "fixtures/*", "coverage/*", "dist/*", "node_modules/*"],
+    "ext": "js,yaml,yml"
   }
 }
