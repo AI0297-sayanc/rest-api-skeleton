@@ -7,6 +7,7 @@
 const debug = require("debug")("skeleton:server")
 const http = require("http")
 const app = require("../app")
+const logger = require("../lib/logger")
 
 /**
  * Normalize a port into a number, string, or false.
@@ -83,9 +84,14 @@ function onListening() {
 }
 
 /**
- * Listen on provided port, on all network interfaces.
+ * Main bootstrapping function:
+ * Listen on provided port, on all network interfaces; after connecting to DB(s) if needed
  */
-
-server.listen(port)
-server.on("error", onError)
-server.on("listening", onListening)
+async function main() {
+  /** Connect to DB(s) here... */
+  server.listen(port)
+  logger.info(`Server listening on port ${port} 🚀`)
+  server.on("error", onError)
+  server.on("listening", onListening)
+}
+main() // immediately invoke it
