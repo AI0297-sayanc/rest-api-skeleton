@@ -20,6 +20,7 @@
     "helmet": "^5.0.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "~1.9.1",
+    "mssql": "^8.1.0",
     "pino": "^7.11.0",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.3.0"
@@ -35,7 +36,14 @@
     "supertest": "^6.2.3"
   },
   "nodemonConfig": {
-    "ignore": ["tests/*", "docs/*", "fixtures/*", "coverage/*", "dist/*", "node_modules/*"],
+    "ignore": [
+      "tests/*",
+      "docs/*",
+      "fixtures/*",
+      "coverage/*",
+      "dist/*",
+      "node_modules/*"
+    ],
     "ext": "js,yaml,yml"
   }
 }
